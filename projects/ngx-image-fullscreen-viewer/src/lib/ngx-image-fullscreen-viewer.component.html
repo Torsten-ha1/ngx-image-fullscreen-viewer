@@ -1,0 +1,63 @@
+<div *ngIf="imageFullscreenView" class="ng-image-fullscreen-view">
+  <div class="lightbox-wrapper">
+    <a class="close" (click)="closeLightbox()"></a>
+    <div class="lightbox-div" #lightboxDiv>
+      <div *ngIf="showLoading" class="pre-loader">
+        <div class="mnml-spinner"></div>
+      </div>
+      <div
+        class="lightbox-image-main"
+        [ngStyle]="{
+          'margin-left': marginLeft + 'px',
+          'grid-template-columns': 'repeat(' + images.length + ',1fr)',
+          transition: effectStyle
+        }"
+      >
+        <div
+          class="lightbox-image"
+          [ngStyle]="{ width: popupWidth + 'px' }"
+          *ngFor="let img of images; let i = index"
+          [attr.id]="'ng-lightbox-image-' + i"
+          (touchstart)="swipeLightboxImg($event, 'start')"
+          (touchend)="swipeLightboxImg($event, 'end')"
+          #lightboxImageDiv
+        >
+          <custom-img
+            [imageUrl]="img.image || img.video || ''"
+            [isVideo]="!!(img.posterImage || img.video)"
+            [videoAutoPlay]="videoAutoPlay"
+            [showVideoControls]="showVideoControls ? 1 : 0"
+            [alt]="img.alt || img.title || ''"
+            [title]="img.title || img.alt || ''"
+            [direction]="direction"
+          >
+          </custom-img>
+        </div>
+      </div>
+      <div
+        [dir]="direction"
+        [ngClass]="{ show: title, hide: !title }"
+        class="caption"
+      >
+        {{ title }}
+      </div>
+      <a
+        *ngIf="images.length > 1"
+        [ngClass]="{ disable: lightboxPrevDisable }"
+        class="prev icons prev-icon"
+        (click)="prevImageLightbox()"
+        >&lsaquo;</a
+      >
+      <a
+        *ngIf="images.length > 1"
+        [ngClass]="{ disable: lightboxNextDisable }"
+        class="next icons next-icon"
+        (click)="nextImageLightbox()"
+        >&rsaquo;</a
+      >
+    </div>
+  </div>
+  <div *ngIf="paginationShow" class="popup-pagination">
+    {{ currentImageIndex + 1 }} of {{ totalImages }}
+  </div>
+</div>

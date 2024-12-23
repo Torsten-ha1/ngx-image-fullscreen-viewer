@@ -10,6 +10,11 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
+    "paths": {
+      "ngx-image-fullscreen-viewer": [
+        "./dist/ngx-image-fullscreen-viewer"
+      ]
+    },
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,

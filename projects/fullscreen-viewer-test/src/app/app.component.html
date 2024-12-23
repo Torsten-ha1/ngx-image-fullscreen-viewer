@@ -1,0 +1,10 @@
+<lib-ngx-image-fullscreen-viewer
+  [images]="images"
+  [paginationShow]="true"
+  [show]="showFullscreen"
+  (close)="showFullscreen = false"
+></lib-ngx-image-fullscreen-viewer>
+
+<button (click)="showFullscreen = !showFullscreen">
+  Open Fullscreen Viewer
+</button>
