@@ -12,17 +12,19 @@ Run `npm install ngx-image-fullscreen-viewer` to install the lib into your proje
 
 ## Usage
 Import in Module or Component file:
-import { NgxImageFullscreenViewerComponent } from 'ngx-image-fullscreen-viewer'
-and add to implorts array.
+`import { NgxImageFullscreenViewerComponent } from 'ngx-image-fullscreen-viewer'`
+and add to imports array.
 
 In template:
+```html
 <lib-ngx-image-fullscreen-viewer
-	[images]="currentFullscreenImages"
-	[paginationShow]="true"
-	[show]="showViewer"
-	(close)="showViewer = false"
+    [images]="currentFullscreenImages"
+    [paginationShow]="true"
+    [show]="showViewer"
+    (close)="showViewer = false"
 ></lib-ngx-image-fullscreen-viewer>
+```
 
 ## Further help
-
-Send an email and pull requests
+Send an email and pull requests.
+Development repository with test application to test the library during development: https://github.com/Torsten-ha1/ngx-image-fullscreen-viewer
