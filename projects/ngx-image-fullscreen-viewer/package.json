@@ -1,6 +1,7 @@
 {
   "name": "ngx-image-fullscreen-viewer",
-  "version": "0.0.1",
+  "description": "Angular image fullscreen viewer. An updated version of ng-image-fullscreen-view that uses standalone components and pure CSS for styling.",
+  "version": "1.0.4",
   "peerDependencies": {
     "@angular/common": "^18.2.0",
     "@angular/core": "^18.2.0"

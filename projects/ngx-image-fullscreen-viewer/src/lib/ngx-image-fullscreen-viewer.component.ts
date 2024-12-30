@@ -16,7 +16,7 @@ import { NgxImageFullscreenViewerService } from './ngx-image-fullscreen-viewer.s
 import { CommonModule } from '@angular/common';
 import { SliderCustomImageComponent } from './slider-custom-image/slider-custom-image.component';
 
-interface ShowMedia {
+export interface ShowMedia {
   image?: string;
   video?: string;
   title?: string;

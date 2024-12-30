@@ -2,23 +2,27 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
 
-## Code scaffolding
+## Description
 
-Run `ng generate component component-name --project ngx-image-fullscreen-viewer` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-image-fullscreen-viewer`.
-> Note: Don't forget to add `--project ngx-image-fullscreen-viewer` or else it will be added to the default project in your `angular.json` file. 
+This library is an update of ng-image-fullscreen-viewer to work with the newest Angular version and uses pure CSS for styling
 
-## Build
+## Install
 
-Run `ng build ngx-image-fullscreen-viewer` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `npm install ngx-image-fullscreen-viewer` to install the lib into your project
 
-## Publishing
+## Usage
+Import in Module or Component file:
+import { NgxImageFullscreenViewerComponent } from 'ngx-image-fullscreen-viewer'
+and add to implorts array.
 
-After building your library with `ng build ngx-image-fullscreen-viewer`, go to the dist folder `cd dist/ngx-image-fullscreen-viewer` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ngx-image-fullscreen-viewer` to execute the unit tests via [Karma](https://karma-runner.github.io).
+In template:
+<lib-ngx-image-fullscreen-viewer
+	[images]="currentFullscreenImages"
+	[paginationShow]="true"
+	[show]="showViewer"
+	(close)="showViewer = false"
+></lib-ngx-image-fullscreen-viewer>
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Send an email and pull requests

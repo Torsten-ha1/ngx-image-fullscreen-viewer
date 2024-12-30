@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { NgxImageFullscreenViewerComponent } from 'ngx-image-fullscreen-viewer';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgxImageFullscreenViewerComponent],
+  imports: [NgxImageFullscreenViewerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -34,8 +33,4 @@ export class AppComponent {
   ];
 
   showFullscreen = false;
-
-  openFullscreenViewer() {
-    // Open fullscreen viewer
-  }
 }
