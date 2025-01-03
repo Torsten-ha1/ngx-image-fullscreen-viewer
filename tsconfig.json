@@ -11,6 +11,9 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "paths": {
+      "ngx-haba-image-viewer": [
+        "./dist/ngx-haba-image-viewer"
+      ],
       "ngx-image-fullscreen-viewer": [
         "./dist/ngx-image-fullscreen-viewer"
       ]

@@ -5,6 +5,18 @@
   (close)="showFullscreen = false"
 ></lib-ngx-image-fullscreen-viewer>
 
-<button (click)="showFullscreen = !showFullscreen">
+<ngx-stack-image-viewer
+  [theImages]="images"
+  [theThumbImages]="images"
+  [transitionDuration]="0.5"
+  [previewImageGap]="0"
+  [previewImageBorderWidth]="4"
+  previewImageBorderColor="red"
+  maxWidth="100%"
+  [previewImageWidth]="100"
+>
+</ngx-stack-image-viewer>
+
+<!-- <button (click)="showFullscreen = !showFullscreen">
   Open Fullscreen Viewer
-</button>
+</button> -->

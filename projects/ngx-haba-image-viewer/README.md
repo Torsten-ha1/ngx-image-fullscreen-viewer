@@ -1,18 +1,17 @@
-# NgxImageFullscreenViewer
+# NgxImageStackViewer - Responsive Image Stack Viewer with Preview Bar
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
 
 ## Description
 
-Angular Fullscreen Image Viewer
+This is an image viewer inspired by ordinary image stacks: Navigate through the images as if they are stacked like in real world.
 
-This library is an update of [ng-image-fullscreen-viewer](https://www.npmjs.com/package/ng-image-fullscreen-view) to work with the newest Angular version and uses pure CSS for styling. So refer to the original project for further documentation.
-I am planing on adding additional features per my demand an will publish and document them here.
+Below the actually shown images a preview bar can optionally be shown to further enhance navigating the images.
 
 ## Install
 
 ```bash
-npm install ngx-image-fullscreen-viewer
+npm install ngx-haba-image-stack-viewer
 ```
 
 ## Usage
@@ -28,12 +27,9 @@ and add to imports array.
 In template:
 
 ```html
-<lib-ngx-image-fullscreen-viewer
+<ngx-haba-image-stack-viewer
   [images]="images"
-  [paginationShow]="true"
-  [show]="showFullscreen"
-  (close)="showFullscreen = false"
-></lib-ngx-image-fullscreen-viewer>
+></ngx-haba-image-stack-viewer>
 
 <button (click)="showFullscreen = !showFullscreen">
   Open Fullscreen Viewer

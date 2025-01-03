@@ -1,0 +1,36 @@
+<div class="ngx-stack-image-viewer">
+  <div class="haba-loading-shade" *ngIf="loading">
+    <div class="loader"></div>
+  </div>
+
+  <div class="main-image-wrapper">
+    <button
+      class="prevImgBtn nav-btn"
+      (click)="prevImage()"
+      *ngIf="!loading && images.length > 1"
+    >
+      &lsaquo;
+    </button>
+
+    <div id="image-container"></div>
+
+    <button
+      (click)="nextImage()"
+      class="nextImgBtn nav-btn"
+      *ngIf="!loading && images.length > 1"
+    >
+      &rsaquo;
+    </button>
+  </div>
+
+  <div class="image-preview" #scrollableContent *ngIf="loadingReady === true">
+    <div
+      class="image-list-item"
+      *ngFor="let image of theThumbImages; let a = index"
+    >
+      <div (click)="showImage(a)">
+        <img [src]="image.image" [id]="'img-' + a" class="image-list-image" />
+      </div>
+    </div>
+  </div>
+</div>
