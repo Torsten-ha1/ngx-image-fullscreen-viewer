@@ -3,11 +3,10 @@ import { NgxImageFullscreenViewerComponent } from 'ngx-image-fullscreen-viewer';
 import { NgxHabaImageViewerComponent } from 'ngx-haba-image-viewer';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [NgxImageFullscreenViewerComponent, NgxHabaImageViewerComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    imports: [NgxImageFullscreenViewerComponent, NgxHabaImageViewerComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'fullscreen-viewer-test';

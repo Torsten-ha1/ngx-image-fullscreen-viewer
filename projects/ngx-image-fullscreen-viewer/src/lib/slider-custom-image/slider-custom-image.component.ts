@@ -9,11 +9,10 @@ const youtubeRegExp =
   validVideoExtensions = ['mp4'];
 
 @Component({
-  selector: 'custom-img',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './slider-custom-image.component.html',
-  styleUrl: './slider-custom-image.component.scss',
+    selector: 'custom-img',
+    imports: [CommonModule],
+    templateUrl: './slider-custom-image.component.html',
+    styleUrl: './slider-custom-image.component.scss'
 })
 export class SliderCustomImageComponent {
   YOUTUBE = 'youtube';

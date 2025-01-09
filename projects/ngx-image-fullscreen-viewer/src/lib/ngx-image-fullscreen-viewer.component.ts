@@ -25,12 +25,11 @@ export interface ShowMedia {
 }
 
 @Component({
-  selector: 'lib-ngx-image-fullscreen-viewer',
-  standalone: true,
-  templateUrl: './ngx-image-fullscreen-viewer.component.html',
-  imports: [CommonModule, SliderCustomImageComponent],
-  styleUrls: ['./ngx-image-fullscreen-viewer.component.css'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'lib-ngx-image-fullscreen-viewer',
+    templateUrl: './ngx-image-fullscreen-viewer.component.html',
+    imports: [CommonModule, SliderCustomImageComponent],
+    styleUrls: ['./ngx-image-fullscreen-viewer.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class NgxImageFullscreenViewerComponent implements OnDestroy {
   totalImages: any = 0;

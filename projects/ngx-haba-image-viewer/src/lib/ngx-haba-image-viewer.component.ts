@@ -16,11 +16,10 @@ export interface Image {
 }
 
 @Component({
-  standalone: true,
-  selector: 'ngx-stack-image-viewer',
-  templateUrl: './ngx-haba-image-viewer.component.html',
-  styleUrls: ['./ngx-haba-image-viewer.component.css'],
-  imports: [CommonModule],
+    selector: 'ngx-stack-image-viewer',
+    templateUrl: './ngx-haba-image-viewer.component.html',
+    styleUrls: ['./ngx-haba-image-viewer.component.css'],
+    imports: [CommonModule]
 })
 export class NgxHabaImageViewerComponent implements OnInit, AfterViewInit {
   @Input() theImages: Array<Image> = [];
