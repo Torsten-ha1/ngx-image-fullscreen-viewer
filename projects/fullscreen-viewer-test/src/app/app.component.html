@@ -1,7 +1,7 @@
 <lib-ngx-image-fullscreen-viewer
   [images]="images"
   [paginationShow]="true"
-  [show]="showFullscreen"
+  [show]="{ visibleFlag: showFullscreen, index: imageIndex }"
   (close)="showFullscreen = false"
 ></lib-ngx-image-fullscreen-viewer>
 
@@ -12,11 +12,11 @@
   [previewImageGap]="0"
   [previewImageBorderWidth]="4"
   previewImageBorderColor="red"
-  maxWidth="100%"
+  maxWidth="1000px"
   [previewImageWidth]="100"
 >
 </ngx-stack-image-viewer>
 
-<!-- <button (click)="showFullscreen = !showFullscreen">
+<button (click)="imageIndex = 0; showFullscreen = !showFullscreen">
   Open Fullscreen Viewer
-</button> -->
+</button>

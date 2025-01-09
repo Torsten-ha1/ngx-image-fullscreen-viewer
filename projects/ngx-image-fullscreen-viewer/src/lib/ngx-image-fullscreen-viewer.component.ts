@@ -50,23 +50,14 @@ export class NgxImageFullscreenViewerComponent implements OnDestroy {
   private swipeLightboxImgCoord?: [any, any];
   private swipeLightboxImgTime?: any;
 
-  //@ViewChild('lightboxDiv') lightboxDiv : any;
-  //@ViewChild('lightboxImageDiv') lightboxImageDiv;
-
-  // @Inputs
   @Input() images: Array<Partial<ShowMedia>> = [];
   @Input()
-  set imageIndex(index: any) {
-    if (index !== undefined && index > -1 && index < this.images.length) {
-      this.currentImageIndex = index;
-    }
-    this.nextPrevDisable();
-  }
-  @Input()
-  set show(visiableFlag: any) {
-    this.imageFullscreenView = visiableFlag;
+  set show(opts: { visibleFlag: boolean; index?: number }) {
+    this.currentImageIndex = opts.index || 0;
+
+    this.imageFullscreenView = opts.visibleFlag;
     this.elRef.nativeElement.ownerDocument.body.style.overflow = '';
-    if (visiableFlag === true) {
+    if (opts.visibleFlag === true) {
       this.elRef.nativeElement.ownerDocument.body.style.overflow = 'hidden';
       this.setPopupSliderWidth();
     }

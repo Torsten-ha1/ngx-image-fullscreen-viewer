@@ -6,7 +6,22 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 Angular Fullscreen Image Viewer
 
-This library is an update of [ng-image-fullscreen-viewer](https://www.npmjs.com/package/ng-image-fullscreen-view) to work with the newest Angular version and uses pure CSS for styling. So refer to the original project for further documentation.
+Works with images, youtube and videos.
+
+This library is an update of [ng-image-fullscreen-viewer](https://www.npmjs.com/package/ng-image-fullscreen-view) to work with the newest Angular version and uses pure CSS for styling. Some enhancements and fixes are deployed.
+
+IMPORTANT:
+The viewer is needed to be presented with an object for the property `show`:
+
+```typescript
+{
+  visibleFlag: boolean
+  index?: number 
+}
+```
+
+Where `index` is optional: If set the specified image is shown if ommited the viewer is reset to image index 0.
+
 I am planing on adding additional features per my demand an will publish and document them here.
 
 ## Install
@@ -31,11 +46,11 @@ In template:
 <lib-ngx-image-fullscreen-viewer
   [images]="images"
   [paginationShow]="true"
-  [show]="showFullscreen"
-  (close)="showFullscreen = false"
+  [show]="{visibleFlag}"
+  (close)="visibleFlag = false"
 ></lib-ngx-image-fullscreen-viewer>
 
-<button (click)="showFullscreen = !showFullscreen">
+<button (click)="visibleFlag = !visibleFlag">
   Open Fullscreen Viewer
 </button>
 ```
@@ -44,7 +59,7 @@ Where `images` is an array of objects of e.g. following type:
 
 ```typescript
 // ...
-showFullscreen = false
+visibleFlag = false
 images = [
     {
       image:

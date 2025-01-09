@@ -42,6 +42,8 @@ export class NgxHabaImageViewerComponent implements OnInit, AfterViewInit {
   imageStack = {
     images: [],
     imageIndex: 0,
+    prevIndex: 0,
+    nextIndex: 0,
   };
 
   @HostListener('window:resize', ['$event'])
@@ -59,41 +61,6 @@ export class NgxHabaImageViewerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     // preload images
-    let imagesLoaded = 0;
-    this.theImages.forEach((img: Image) => {
-      const image = new Image();
-      image.src = img.image;
-      image.style.position = 'absolute';
-      image.style.left = '-102%';
-      image.style.width = '100%';
-      image.style.transition =
-        'left ' + this.transitionDuration + 's ease-in-out';
-
-      let done = false;
-
-      image.onload = () => {
-        console.log('image loaded');
-        imagesLoaded++;
-
-        // measure image
-        if (!done) {
-          const imgHeight = image.height;
-          document
-            .getElementsByClassName('main-image-wrapper')[0]
-            ?.setAttribute('style', `height: ${imgHeight}px`);
-
-          done = true;
-        }
-        if (imagesLoaded === this.theImages.length) {
-          this.onImagesPreloaded();
-        }
-      };
-      this.images.push(image);
-    });
-
-    this.selectedIndex = 0;
-
-    document.getElementById('image-container')?.appendChild(this.image);
   }
 
   private onImagesPreloaded() {
@@ -102,6 +69,7 @@ export class NgxHabaImageViewerComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.loading = false;
     }, this.transitionDuration * 1000);
+
     this.setImage(this.selectedIndex);
     this.updateScreenSize();
 
@@ -119,6 +87,9 @@ export class NgxHabaImageViewerComponent implements OnInit, AfterViewInit {
 
     const indexDiff = this.selectedIndex - index;
 
+    this.imageStack.prevIndex = this.selectedIndex;
+    this.imageStack.imageIndex = index;
+
     console.log('indexDiff:', indexDiff);
 
     if (indexDiff < 0) {
@@ -131,78 +102,51 @@ export class NgxHabaImageViewerComponent implements OnInit, AfterViewInit {
     console.log('imgContainer:', imgContainer);
 
     if (imgContainer) {
-      // imgContainer.innerHTML = '';
-
       const oldRef = this.image;
 
       this.image = this.images[index];
 
-      if (!Array.from(imgContainer.children).includes(this.image)) {
-        if (indexDiff < 0) {
-          for (let i = 1; i < Math.abs(indexDiff) + 1; i++) {
-            console.log('this.selectedIndex + i:', this.selectedIndex + i);
-            imgContainer.appendChild(this.images[this.selectedIndex + i]);
-            setTimeout(() => {
-              const theImg = this.images[this.selectedIndex + i];
-
-              console.log('theImg:', theImg);
-
-              theImg.style.left = '0';
-            }, 0);
-          }
-        } else {
-          imgContainer.appendChild(this.image);
-        }
+      if (!left) {
+        imgContainer.insertBefore(this.image, oldRef.nextElementSibling);
+        // this.image.style.left = '0';
       } else {
-        // just move the image into view
-        // if (indexDiff < 0) {
-        //   console.log('insert before');
-        //   imgContainer.insertBefore(this.image, oldRef);
-        // } else {
-        //   console.log('insert after');
-        //   imgContainer.insertBefore(this.image, oldRef.nextSibling);
-        // }
-
-        console.log('insert before');
-
-        if (!left) {
-          imgContainer.insertBefore(this.image, oldRef.nextElementSibling);
-        } else {
-          imgContainer.insertBefore(this.image, oldRef);
-        }
-
-        if (!left) {
-          setTimeout(() => {
-            this.image.style.left = '0';
-          }, 0);
-        } else {
-          oldRef.style.left = '-102%';
-          setTimeout(() => {
-            // imgContainer.removeChild(oldRef);
-          }, this.transitionDuration * 1000);
-        }
-
-        // oldRef.style.left = '-100%';
+        imgContainer.insertBefore(this.image, oldRef);
+        // oldRef.style.left = '-102%';
       }
+
+      // if (!left) {
+      //   setTimeout(() => {
+      //     this.image.style.left = '0';
+      //     // oldRef.style.left = '-102%';
+      //   }, 0);
+      // } else {
+      //   oldRef.style.left = '-102%';
+
+      //   // setTimeout(() => {
+      //   //   // imgContainer.removeChild(oldRef);
+      //   // }, this.transitionDuration * 1000);
+      // }
+
+      // oldRef.style.left = '-100%';
 
       // move old image out of view
       // if (left) {
       //   // this.image.style.left = left ? '100%' : '-100%';
       // }
 
-      // ---
-      if (indexDiff === 0) {
-        if (!left) {
-          setTimeout(() => {
-            this.image.style.left = '0';
-          }, 0);
-        } else {
-          oldRef.style.left = '-102%';
-          setTimeout(() => {
-            // imgContainer.removeChild(oldRef);
-          }, this.transitionDuration * 1000);
-        }
+      // nav via btns
+      // if (indexDiff === 0) {
+      if (!left) {
+        setTimeout(() => {
+          this.image.style.left = '0';
+        }, 0);
+      } else {
+        oldRef.style.left = '-102%';
+        setTimeout(() => {
+          // imgContainer.removeChild(oldRef);
+        }, this.transitionDuration * 1000);
       }
+      // }
 
       // this.image.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -241,6 +185,49 @@ export class NgxHabaImageViewerComponent implements OnInit, AfterViewInit {
     if (container) {
       container.setAttribute('style', `max-width: ${this.maxWidth}`);
     }
+
+    let imagesLoaded = 0;
+
+    // const imgContainer = document.getElementById('image-container');
+
+    this.theImages.forEach((img: Image) => {
+      const image = new Image();
+      image.src = img.image;
+      image.style.position = 'absolute';
+      image.style.left = '-102%';
+      image.style.width = '100%';
+      image.style.transition =
+        'left ' + this.transitionDuration + 's ease-in-out';
+
+      let done = false;
+
+      image.onload = (img) => {
+        console.log('image loaded: ', img.target);
+        imagesLoaded++;
+
+        // measure image
+        if (!done) {
+          const imgHeight = image.height;
+          document
+            .getElementsByClassName('main-image-wrapper')[0]
+            ?.setAttribute('style', `height: ${imgHeight}px`);
+
+          done = true;
+        }
+        if (imagesLoaded === this.theImages.length) {
+          this.onImagesPreloaded();
+        }
+      };
+
+      const cont = document.getElementById('image-container');
+      this.images.push(image as HTMLImageElement);
+
+      // console.log('cont:', cont);
+
+      cont?.appendChild(image as HTMLImageElement);
+    });
+
+    this.selectedIndex = 0;
   }
 
   prevImage() {
@@ -262,8 +249,6 @@ export class NgxHabaImageViewerComponent implements OnInit, AfterViewInit {
   showImage(index: number) {
     this.setImage(index);
 
-    this.selectedIndex = index;
-
     // scroll preview list
     if (this.selectedIndex < index) {
       this.scrollRight();
@@ -275,6 +260,8 @@ export class NgxHabaImageViewerComponent implements OnInit, AfterViewInit {
 
     this.outlineForImageAtIndex(this.selectedIndex, false);
     this.outlineForImageAtIndex(index);
+
+    this.selectedIndex = index;
   }
 
   public scrollRight(): void {

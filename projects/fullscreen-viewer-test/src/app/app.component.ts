@@ -12,6 +12,10 @@ import { NgxHabaImageViewerComponent } from 'ngx-haba-image-viewer';
 export class AppComponent {
   title = 'fullscreen-viewer-test';
 
+  imageIndex = 1;
+
+  resetIndex = true;
+
   images = [
     {
       image:
